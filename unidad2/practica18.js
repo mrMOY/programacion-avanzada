@@ -23,14 +23,29 @@ ctx.stroke();
 ctx.fillStyle = ("rgba(252, 184, 138)");
 ctx.fill();
 
+//boca
+ctx.beginPath();
+ctx.lineWidth=1;
+ctx.arc(431, 308,20,0,1*Math.PI);
+ctx.strokeStyle= ("rgba(0, 0, 0)");
+ctx.stroke();
+ctx.fillStyle = ("rgba(255,255,255)");
+ctx.fill();
+ctx.beginPath();
+ctx.moveTo(413, 317);
+ctx.lineTo(449, 316);
+ctx.stroke();
+
+
 //gorra  
+ctx.beginPath();
+ctx.fillStyle = "rgba(209, 133, 0 )";
+ctx.fillRect(523, 200, 150, 20);
 ctx.beginPath();
 ctx.arc(436, 220,100,3* Math.PI, 2 * Math.PI);
 ctx.stroke();
 ctx.fillStyle = ("rgba(119, 76, 0)");
 ctx.fill();
-ctx.fillStyle = "rgba(0,0,0)";
-ctx.fillRect(523, 200, 150, 20);
 
 
 //lentes 
