@@ -112,13 +112,13 @@ function update(){
     }
     if(direccion=="left"){
         player1.x -=speed;
-        if(player1.x ==0){
+        if(player1.x<0){
             player1.x =600;
         }
     }
     if(direccion=="right"){
         player1.x +=speed;
-        if(player1.x ==600){
+        if(player1.x >600){
             player1.x =0;
         }
     }
