@@ -152,6 +152,6 @@ ctx.fill();
 
 
 
-// canvas.addEventListener("click", function(e){
-//     alert(e.offsetX + ", " + e.offsetY);
-// });
+ canvas.addEventListener("click", function(e){
+     alert(e.offsetX + ", " + e.offsetY);
+ });
