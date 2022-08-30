@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="contenedor">
+        <ol>
+            <li v-for="item in chamacos">
+                {{item.name}}: <span>
+                    {{item.role}}
+                </span>
+            </li>
+        </ol><br>
+
+        <input type="text" v-model="chamacoName" placeholder="name">
+        
+        <input type="text" v-model="chamacoRole" placeholder="role">
+        <button @click="save" > click ME!</button>
+        
+
+    </div>
+    <script type="text/javascript">
+        const { createApp } = Vue
+        const vapp = createApp({
+          data() {
+            return {
+              num1: 0,
+              num2:0,
+              sumita:0,
+              edad:0,
+              chamacos:[
+                {name:'Iran', role:'role'},
+                {name: 'Duarte', role:'backend'},
+                {name: 'Buenrostro',role:'movil' }],
+              chamacoName:'',
+              chamacoRole:''
+
+            }
+          },
+          methods:{
+            suma(){
+                this.sumita= parseInt(this.num1) +parseInt(this.num2);
+                
+            },
+            save(){
+                this.chamacos.push({name:this.chamacoName, role:this.chamacoRole});
+            }
+          }
+        }).mount('#contenedor')
+    </script>
+</body>
+</html>
