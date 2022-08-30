@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="contenedor">
+
+        <input type="text" v-model="num1" placeholder="num1">
+        <hr>
+        <input type="text" v-model="num2" placeholder="num2"><br>
+        <button @click="suma">click me!</button>
+        <hr>
+        <h1>
+            {{sumita}}
+        </h1>
+        <hr>
+        <input type="text" placeholder="edad" v-model="edad">
+        <h1 v-if="edad >17">
+            pase
+        </h1>
+        <h1 v-if="edad <18">
+            no pasas
+        </h1>
+
+    </div>
+    <script type="text/javascript">
+        const { createApp } = Vue
+        const vapp = createApp({
+          data() {
+            return {
+              num1: 0,
+              num2:0,
+              sumita:0,
+              edad:0,
+
+            }
+          },
+          methods:{
+            suma(){
+                this.sumita= parseInt(this.num1) +parseInt(this.num2);
+                
+            }
+          }
+        }).mount('#contenedor')
+    </script>
+</body>
+</html>
