@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Moises Moreno",
+    "username": "Bret",
+    "password":"secret",
+    "email": "moises@gmail.com"
+
+  },
+  {
+    "id": 2,
+    "name": "ervin Howell",
+    "username": "Antonette",
+    "password":"secret",
+    "email": "shanna@melissa.tv"
+  },
+  {
+    "id": 3,
+    "name": "clementine Bauch",
+    "username": "Samantha",
+    "password":"secret",
+    "email": "nathan@yesenia.net"
+  },
+
+  {
+    "id": 4,
+    "name": "patricia Lebsack",
+    "username": "Karianne",
+    "password":"secret",
+    "email": "julianne.OConner@kory.org"
+    
+  },
+  {
+    "id": 5,
+    "name": "chelsey Dietrich",
+    "username": "Kamren",
+    "password":"secret",
+    "email": "lucio_Hettinger@annie.ca"
+
+  }
+
+
+
+]
