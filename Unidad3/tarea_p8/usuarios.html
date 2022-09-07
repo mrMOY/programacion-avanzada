@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1/0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js "> </script> 
+</head>
+<body>
+    <div id="contenedor" style="width: 900px; height: 1000px; margin:0px auto; ">
+      <br>
+
+
+      <button   @click="accionRegis" class="btn btn-primary" v-if="tablita">Registrar usuarios</button>
+      <button   @click="accionCancel" class="btn btn-primary" v-if="mostrar">Cancelar</button>
+
+
+        <table class="table table-dark table-striped" v-if="tablita" >
+            <thead>
+                <tr>
+                    <th  scope="col">#</th>
+                    <th  scope="col">NOMBRE</th>
+                    <th  scope="col">USERNAME</th>
+                    <th  scope="col">EMAIL</th>
+                    <th  scope="col">TELEFONO</th>
+                    <th  scope="col">WEBSITE</th>
+                    <th  scope="col">COMPANIA NAME</th>
+                    <th  scope="col">ACCION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in users">
+                    <th> {{item.id}} </th>
+                    <td> {{item.name}} </td>
+                    <td> {{item.username}} </td>
+                    <td> {{item.email}} </td>
+                    <td> {{item.phone}} </td>
+                    <td> {{item.website}} </td>
+                    <td> {{item.company.name}} </td>
+                    <td>  
+                          <button  class="btn btn-light" @click="accionEdit(item.id)" >Edit</button> <br> <br> 
+                          <button  @click="eliminar(item.id)"  class="btn btn-light">Remove</button> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <DIv v-if="mostrar">
+
+          <form action="post"  > 
+            <h1 v-if="FormEdit === true" > EDITAR USUARIO </h1>
+            <h1 v-if="FormRegis === true" > REGISTRAR USUARIO</h1>
+            <div v-if="FormEdit === true" class="mb-3" style="width: 500px;">
+              <input  type="hidden" v-model="idtab" class="form-control" >
+            </div>
+            <div class="mb-3" style="width: 500px;">
+              <label  class="form-label">Nombre</label>
+              <input type="text" v-model="name" class="form-control" >
+            </div>
+            <div class="mb-3" style="width: 500px;">
+                <label  class="form-label">username</label>
+                <input type="text" v-model="username" class="form-control"  >
+              </div>
+            <div class="mb-3" style="width: 500px;">
+                <label for="" class="form-label">Email</label>
+                <input type="email" v-model="email" class="form-control"  >
+              </div>
+            <div class="mb-3" style="width: 500px;">
+              <label for="" class="form-label">Telefono</label>
+              <input type="text" v-model="phone" class="form-control"  >
+            </div> 
+            <div class="mb-3" style="width: 500px;">
+              <label for="" class="form-label">Website</label>
+              <input type="text" v-model="website" class="form-control"  >
+            </div>  
+  
+            <div class="mb-3" style="width: 500px;">
+              <label for="" class="form-label">company name</label>
+              <input type="text" v-model="Cname" class="form-control"  >
+            </div> 
+            <div class="mb-3" style="width: 500px;">
+              <label for="" class="form-label">company catchPhrase</label>
+              <input type="text" v-model="catchPhrase" class="form-control"  >
+            </div> 
+            <div class="mb-3" style="width: 500px;">
+              <label for="" class="form-label">company bs</label>
+              <input type="text" v-model="bs" class="form-control"  >
+            </div> 
+            <div v-if="FormRegis === true" class="mb-3" style="width: 500px;">
+              <label for="" class="form-label">Password</label>
+              <input type="password" v-model="password" class="form-control">
+            </div>
+            <button v-if="FormRegis === true" type="button" @click="save" class="btn btn-primary">Registrar al usuarios</button>
+            <button v-if="FormEdit === true" type="button" @click="editar(idtab)" class="btn btn-primary">editar al usuarios</button>
+          </form>
+        </DIv>
+
+
+        
+
+    </div>
+         
+
+
+    <script type="text/javascript">
+
+
+          
+        var correo = sessionStorage.getItem("correo");
+        console.log('Correo: ',correo);
+        const {createApp} = Vue;
+        const data = null;
+        const error = null;
+        
+
+        const app = createApp({
+          data() {
+            return {
+                users: [],
+                mostrar: false,
+                tablita: true,
+                idtab:'',
+                name:'',
+                username: '',
+                email: '',
+                phone:'',
+                website:'',
+                company:'',
+                Cname:'',
+                catchPhrase:'',
+                bs:'',
+                password:'',
+                FormEdit:false,
+                FormRegis:false
+            }
+          },
+          methods:{
+            eliminar(u){
+              let idDel = u-1;
+              swal({
+                title: "Estas seguro?",
+                text: "Una vez borrado no podras recuperar el registro",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  swal("El registro fue eliminado", {
+                    icon: "success",
+                  });
+                  this.users.splice(idDel, 1); 
+                  idDel-=1;
+
+                } else {
+                  swal("Tu registro no fue eliminado !");
+                }
+              });
+              
+              
+              console.log("id usuario: ",idDel);
+
+
+
+            },
+
+            editar(idtab){
+              console.log(idtab)
+
+              this.users[idtab-1].name = this.name
+              this.users[idtab-1].username = this.username
+              this.users[idtab-1].email = this.email
+              this.users[idtab-1].phone = this.phone
+              this.users[idtab-1].website = this.website
+              this.users[idtab-1].company.Cname = this.website
+              this.users[idtab-1].company.catchPhrase = this.website
+              this.users[idtab-1].company.bs = this.website
+
+              swal("Good job!", "Se edito el usuario con exito!", "success");
+              this.tablita = true
+              this.mostrar = false
+            },
+            save(){
+                this.users.push({id:this.users.length+1,name:this.name,username:this.username,email:this.email,phone:this.phone,website:this.website,company:{name:this.Cname,catchPhrase:this.catchPhrase,bs:this.bs }   ,Password:this.Password})
+                this.name=''
+                this.username=''
+                this.email=''
+                this.phone=''
+                this.website=''
+                this.Cname='',
+                this.catchPhrase='',
+                this.bs='',
+                this.password=''
+                console.log( "hola")
+                swal("Exito!", "usuario añadido con exito!", "success");
+                this.tablita = true 
+                this.mostrar = false
+
+            },            
+            accionRegis(){
+                this.tablita = false
+                this.mostrar = true
+                this.FormRegis = true
+                this.FormEdit = false
+
+
+
+            },
+            accionCancel(){
+
+              this.tablita = true
+              this.mostrar = false
+            },
+            accionEdit(u){
+              this.tablita = false
+              this.mostrar = true
+              this.FormEdit= true
+              this.FormRegis=false
+
+              console.log(u)
+              console.log(this.users[u].id)
+              var idTemp = this.users[u-1].id;
+              this.users.forEach(u => {
+                if(u.id == idTemp){
+                    this.idtab=u.id
+                    this.name=u.name
+                    this.username = u.username
+                    this.email= u.email
+                    this.phone= u.phone
+                    this.website= u.website
+                    this.Cname= u.company.name
+                    this.catchPhrase= u.company.catchPhrase
+                    this.bs= u.company.bs
+                }
+              });
+              
+            },
+            
+
+          },
+          mounted(){
+            fetch ('users.json')
+                .then((res) => res.json())
+                .then((json) => (this.users = json))
+                .catch ((err)=> (console.log(err)))
+             }
+
+        }).mount('#contenedor')
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
