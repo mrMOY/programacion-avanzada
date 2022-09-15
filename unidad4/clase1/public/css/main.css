@@ -1,0 +1,9 @@
+.contaner form fieldset {
+  background-color: blueviolet;
+}
+.contaner form fieldset button {
+  width: 60px;
+  min-height: 30px;
+  background-color: aquamarine;
+  color: white;
+}
