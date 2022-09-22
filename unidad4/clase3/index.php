@@ -10,9 +10,11 @@
     </head>
     <body>
         <div class="contaner" >
-                <div id="app" class="vh-100 d-flex justify-content-center align-items-center">
+
+        <section>
+            <div id="app" class="vh-100 d-flex justify-content-center align-items-center">
                     <div class="col-md-4 p-5 shadow-sm border rounded-3">
-                        <form action="products"  method="post">
+                        <form class=""  method="post" action="products">
                             <fieldset>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img src="https://ifera.org/wp-content/uploads/2020/06/icon-green-login-1000-px.png" class="rounded w-50 p-3  " alt="..."> 
@@ -20,9 +22,19 @@
                                 </div>
                                 
                                 <h2 class="text-center mb-4">Login</h2>
-                                <div class="mb-3">
-                                    <input type="email" name=""  class="form-control" placeholder="Email"> <br>
-                                    <input type="password" name=""  class="form-control" placeholder="Password">
+                                <label class="text-center">
+                                        correo electronico
+                                    </label> <br>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">@</span> 
+                                    <input type="text" class="form-control" placeholder="username@fakemail.com" aria-label="Username" aria-describedby="basic-addon1"> 
+                                </div>
+                                <label class="text-center">
+                                        contraseña
+                                    </label> <br>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">@</span> 
+                                    <input type="password" class="form-control" placeholder="******" aria-label="Username" aria-describedby="basic-addon1"> 
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" name=""  class="btn btn-primary">Acceder</button>
@@ -32,6 +44,8 @@
                     </div>
                 </div>
             </div>
+        </section>
+                
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </body>
