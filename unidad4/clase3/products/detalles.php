@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <?php for ($i=0; $i < 12; $i++): ?>
+                        
                         <div class="col-md-4 p-2">
                         <div class="card" style="width: 18rem;">
                             <img src="../public/img/logo.png" class="card-img-top" alt="...">
@@ -38,13 +38,13 @@
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <div class="row">
                                         <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
-                                        <a href="" onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
+                                        <a  onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
                                     </div>
-                                    <a href="detalles.php"  class="btn btn-info col-12">INFO</a>
+                                    
                                 </div>
                             </div>
                         </div>
-                        <?php endfor; ?>
+                        
                         </div>
                         
                 </div>
