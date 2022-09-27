@@ -12,7 +12,7 @@
         <div class="contaner" >
                 <div id="app" class="vh-100 d-flex justify-content-center align-items-center">
                     <div class="col-md-4 p-5 shadow-sm border rounded-3">
-                        <form action="products"  method="post">
+                        <form action="./app/AuthController.php"  method="post">
                             <fieldset>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img src="https://ifera.org/wp-content/uploads/2020/06/icon-green-login-1000-px.png" class="rounded w-50 p-3  " alt="..."> 
@@ -21,13 +21,13 @@
                                 
                                 <h2 class="text-center mb-4">Login</h2>
                                 <div class="mb-3">
-                                    <input name="email" type="email" name=""  class="form-control" placeholder="Email"> <br>
-                                    <input name="password" type="password" name=""  class="form-control" placeholder="Password">
+                                    <input name="email" type="email"   class="form-control" placeholder="Email"> <br>
+                                    <input name="password" type="password"  class="form-control" placeholder="Password">
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" name=""  class="btn btn-primary">Acceder</button>
                                 </div>
-                                <input type="hidden" value="access">
+                                <input type="hidden" name="acction" value="access">
                             </fieldset>
                         </form>
                     </div>

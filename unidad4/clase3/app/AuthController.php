@@ -3,10 +3,11 @@
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'access':
-                    $AuthController = new AuthController();
+                    $authController = new AuthController();
 
                     $email = strip_tags($_POST['email']);
-                    $password = strip_tags($_POST['email']);
+                    $password = strip_tags($_POST['password']);
+                    $authController->login($email,$password);
                 break;
             
         }
@@ -25,22 +26,23 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('email' => 'moisesm_19@alu.uabcs.mx','password' => '4%7@QcV9uK2nAs'),
+            CURLOPT_POSTFIELDS => array('email' => $email ,'password' => $password),
             ));
 
             $response = curl_exec($curl);
 
             curl_close($curl);
-            $response = json_encode($response);
+            $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
                 session_start();
                 $_SESSION['name']= $response->data->name;
-
-                $_SESSION['name'] = $response->data->name;
-                header("location:./../products/index.php");
+                $_SESSION['lastname'] = $response->data->lastname;
+                $_SESSION['avatar'] = $response->data->avatar;
+                $_SESSION['token'] = $response->data->token;
+                header("Location:../products/index.php");
 
             }else {
-                header("location:../?error=true") ;          
+                header("Location:../?error=true") ;          
              }
         }
     }
