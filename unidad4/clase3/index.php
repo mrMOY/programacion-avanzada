@@ -25,7 +25,7 @@
                                     <input name="password" type="password"  class="form-control" placeholder="Password">
                                 </div>
                                 <div class="d-grid">
-                                    <input type="hidden" name="acction" value="access">
+                                    <input type="hidden" name="action" value="access">
                                     <button type="submit" name=""  class="btn btn-primary">Acceder</button>
                                 </div>
                             </fieldset>
