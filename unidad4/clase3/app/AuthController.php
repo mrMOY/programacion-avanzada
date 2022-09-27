@@ -18,7 +18,7 @@
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/login',
+            CURLOPT_URL => 'http://crud.jonathansoto.mx/api/login',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -30,7 +30,6 @@
             ));
 
             $response = curl_exec($curl);
-
             curl_close($curl);
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
