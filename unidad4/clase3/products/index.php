@@ -36,13 +36,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <?php for ($i=0; $i < 12; $i++): ?>
+
+                        
+                        <?php  foreach ($product as $arayP) {?>
                         <div class="col-md-4 p-2">
                         <div class="card" style="width: 18rem;">
-                            <img src="<?php echo $product[$i]->cover ?> " class="card-img-top" alt="...">
+                            <img src="<?php echo $arayP->cover ?> " class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"> <?php echo $product[$i]->name ?></h5>
-                                    <p class="card-text"> <?php echo $product[$i]->description ?> </p>
+                                    <h5 class="card-title"> <?php echo $arayP->name ?></h5>
+                                    <p class="card-text"> <?php echo $arayP->description ?> </p>
                                     <div class="row">
                                         <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
                                         <a href="" onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
@@ -51,7 +53,8 @@
                                 </div>
                             </div>
                         </div>
-                        <?php endfor; ?>
+
+                        <?php }?>
                         </div>
                         
                 </div>
@@ -69,18 +72,42 @@
             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <?php for ($i=0; $i < 6; $i++):?> 
-        <div class="modal-body">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span> 
-                <input type="text" class="form-control" placeholder="username@fakemail.com" aria-label="Username" aria-describedby="basic-addon1"> 
+
+        <form action="index.php" method="post">
+            
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">name</span> 
+                    <input type="text" name="name" class="form-control" placeholder="name" aria-label="name" aria-describedby="basic-addon1"> 
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">name</span> 
+                    <input type="text" name="slug" class="form-control" placeholder="slug" aria-label="slug" aria-describedby="basic-addon1"> 
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">description</span> 
+                    <input type="text" name="description" class="form-control" placeholder="description" aria-label="description" aria-describedby="basic-addon1"> 
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">features</span>    
+                    <input type="text" name="features" class="form-control" placeholder="features" aria-label="features" aria-describedby="basic-addon1"> 
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">brand_id</span> 
+                    <input type="text" name="brand_id" class="form-control" placeholder="brand_id" aria-label="brand_id" aria-describedby="basic-addon1"> 
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">cover</span> 
+                    <input type="text" name="cover" class="form-control" placeholder="cover" aria-label="cover" aria-describedby="basic-addon1"> 
+                </div>
             </div>
-        </div>
-        <?php endfor; ?>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            <input type="hidden" name="action" value="create">
+        </form>
+
         </div>
     </div>
     </div>
