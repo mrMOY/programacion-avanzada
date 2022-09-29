@@ -1,3 +1,9 @@
+<?php
+    include "../app/ProductsController.php";
+    $producto = new ProductsController;
+    $product = $producto->listaProducts();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,23 +25,24 @@
                     <div class="border-botton">
                         <div class="row m-2">
                             <div class="col">
-                                <span>Producto</span>
+                                <span>Productos</span>
                             </div>
                             <div class="col">
                                 <button  data-bs-toggle="modal" data-bs-target="#createproduct"   class="btn btn-info float-end">
                                     añadir producto
                                 </button>
                             </div>
+                            <HR></HR>
                         </div>
                     </div>
                     <div class="row">
                         <?php for ($i=0; $i < 12; $i++): ?>
                         <div class="col-md-4 p-2">
                         <div class="card" style="width: 18rem;">
-                            <img src="../public/img/logo.png" class="card-img-top" alt="...">
+                            <img src="<?php echo $product[$i]->cover ?> " class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h5 class="card-title"> <?php echo $product[$i]->name ?></h5>
+                                    <p class="card-text"> <?php echo $product[$i]->description ?> </p>
                                     <div class="row">
                                         <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
                                         <a href="" onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
