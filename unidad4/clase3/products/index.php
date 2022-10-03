@@ -2,7 +2,12 @@
     include "../app/ProductsController.php";
     $producto = new ProductsController;
     $product = $producto->listaProducts();
+
+    $marca = new ProductsController;    
+    $brand = $marca->getBrand();
+    // var_dump($brand);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,8 +99,13 @@
                     <input type="text" name="features" class="form-control" placeholder="features" aria-label="features" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">brand_id</span> 
-                    <input type="text" name="brand_id" class="form-control" placeholder="brand_id" aria-label="brand_id" aria-describedby="basic-addon1"> 
+                    <span class="input-group-text" id="basic-addon1">brand_id</span>
+                    <select name="brand_id" class="form-select" placeholder=" " id="">
+                            <?php foreach($brand as $arrayBrand){ ?>
+                                <option value="<?php echo $arrayBrand ->id ?>"> <?php echo $arrayBrand->name ?> </option>
+                            <?php }?>
+                    </select>                     
+                    <!-- <input type="text" name="brand_id" class="form-control" placeholder="brand_id" aria-label="brand_id" aria-describedby="basic-addon1">  -->
                 </div>
                 <div class="input-group mb-3">
                     <input type="file" name="cover" class="form-control" placeholder="cover" > 
