@@ -48,8 +48,17 @@
                         <div class="card" style="width: 18rem;">
                             <img src="<?php echo $arayP->cover ?> " class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title"> <?php echo $arayP->name ?></h5>
-                                    <p class="card-text"> <?php echo $arayP->brand->name ?> </p>
+                                    <h5 class="card-title"> <?php echo $arayP->name ?></h5>                                    
+                                    <p class="card-text"> 
+                                        <?php
+                                            if (($arayP->brand) == null) {                                                
+                                                echo "Producto sin brand";
+                                            } else {
+                                                echo $arayP->brand->name;
+                                            }            
+                                            // echo $arayP->brand->name;                             
+                                        ?> 
+                                    </p>
                                     <p class="card-text"> <?php echo $arayP->description ?> </p>
                                     <div class="row">
                                         <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
