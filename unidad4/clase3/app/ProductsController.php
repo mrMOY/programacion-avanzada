@@ -8,7 +8,8 @@
                     $description = strip_tags($_POST['description']);
                     $features = strip_tags($_POST['features']);
                     $brand_id = strip_tags($_POST['brand_id']);
-                    $cover = strip_tags($_POST['cover']);
+
+                    $cover = $_FILES['cover']['tmp_name'];
 
                     $productsController = new ProductsController;
                     $productsController -> createProduct($name,$slug, $description, $features, $brand_id, $cover);
@@ -64,10 +65,17 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('name' => $name,'slug' => $slug,'description' => $description,'features' => $features,'brand_id' => $brand_id),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer '. $_SESSION['token']
             ),
+            CURLOPT_POSTFIELDS => array(
+                'name' => $name,
+                'slug' => $slug,
+                'description' => $description,
+                'features' => $features,
+                'brand_id' => $brand_id, 
+                'cover' => new CURLFILE($cover))
+            
             ));
 
             $response = curl_exec($curl);

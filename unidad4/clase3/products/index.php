@@ -44,6 +44,7 @@
                             <img src="<?php echo $arayP->cover ?> " class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title"> <?php echo $arayP->name ?></h5>
+                                    <p class="card-text"> <?php echo $arayP->brand->name ?> </p>
                                     <p class="card-text"> <?php echo $arayP->description ?> </p>
                                     <div class="row">
                                         <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
@@ -69,11 +70,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Añadir Producto</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form action="index.php" method="post">
+        <form action="index.php" method="post" enctype="multipart/form-data">
             
             <div class="modal-body">
                 <div class="input-group mb-3">
@@ -81,7 +82,7 @@
                     <input type="text" name="name" class="form-control" placeholder="name" aria-label="name" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">name</span> 
+                    <span class="input-group-text" id="basic-addon1">slug</span> 
                     <input type="text" name="slug" class="form-control" placeholder="slug" aria-label="slug" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
@@ -97,15 +98,13 @@
                     <input type="text" name="brand_id" class="form-control" placeholder="brand_id" aria-label="brand_id" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">cover</span> 
-                    <input type="text" name="cover" class="form-control" placeholder="cover" aria-label="cover" aria-describedby="basic-addon1"> 
+                    <input type="file" name="cover" class="form-control" placeholder="cover" > 
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="hidden" name="action" value="create">
                 <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-            <input type="hidden" name="action" value="create">
+            </div>            
         </form>
 
         </div>
