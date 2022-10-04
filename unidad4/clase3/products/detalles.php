@@ -1,3 +1,15 @@
+<?php 
+    include "../app/ProductsController.php";
+    $slugTemp=$_GET["slug"];
+    // echo $slugTemp;  
+
+    $etiqueta = new ProductsController;    
+    $slug = $etiqueta->detalleProducto($slugTemp);
+
+    // var_dump($slug)
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,31 +33,61 @@
                             <div class="col">
                                 <span>Producto</span>
                             </div>
-                            <div class="col">
-                                <button  data-bs-toggle="modal" data-bs-target="#createproduct"   class="btn btn-info float-end">
-                                    añadir producto
-                                </button>
-                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        
-                        <div class="col-md-4 p-2">
-                        <div class="card" style="width: 18rem;">
-                            <img src="../public/img/logo.png" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <div class="row">
-                                        <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
-                                        <a  onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
+                    <div class="row">      
+
+                   
+
+                        <div class="card mb-3" style="max-width: 1000px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="<?php echo $slug->cover ?> " class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+
+                                        <h5 class="card-title"> <?php echo $slug->name ?></h5> 
+                                        <p class="h6">Slug</p>     
+                                        <p class="card-text"> <?php echo $slug->slug ?> </p> 
+                                        <p class="h6">Descripcion</p>  
+                                        <p class="card-text"> <?php echo $slug->description ?> </p>  
+                                        <p class="h6">Feactures</p>                                 
+                                        <p class="card-text"> <?php echo $slug->features ?> </p>   
+                                        <p class="h6">Marca</p>                              
+                                        <p class="card-text"> 
+                                        <?php
+                                                if (($slug->brand) == null) {                                                
+                                                    echo "Producto sin brand";
+                                                } else {
+                                                    echo $slug->brand->name;
+                                                }            
+                                                // echo $arayP->brand->name;                             
+                                        ?> 
+                                        </p>
+                                        <p class="h6"> tags</p>
+                                        <p class="card-text ">  
+                                            <?php foreach ($slug->tags as $arraySlug) { ?>
+                                                <?php echo $arraySlug->name ?> 
+                                            <?php }?> 
+                                        </p>
+                                        <p class="h6">Categorias</p>
+                                        <p class="card-text ">
+                                            <?php foreach ($slug->categories as $arraySlug) { ?>
+                                                <?php echo $arraySlug->name ?>  
+                                            <?php }?>
+                                        </p> 
+                                       
+                                        <div class="row">
+                                            <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
+                                            <a href="" onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
+                                        </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
-                        
-                        </div>
+
+                    </div>
                         
                 </div>
                 
@@ -55,28 +97,7 @@
         
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="createproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <?php for ($i=0; $i < 6; $i++):?> 
-        <div class="modal-body">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span> 
-                <input type="text" class="form-control" placeholder="username@fakemail.com" aria-label="Username" aria-describedby="basic-addon1"> 
-            </div>
-        </div>
-        <?php endfor; ?>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-        </div>
-    </div>
-    </div>
+    
     <script type="text/javascript">
         function remove(target) {
             swal({

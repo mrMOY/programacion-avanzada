@@ -64,7 +64,7 @@
                                         <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
                                         <a href="" onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
                                     </div>
-                                    <a href="detalles.php"  class="btn btn-info col-12">INFO</a>
+                                    <a href="detalles.php?slug=<?php echo $arayP->slug ?>"  class="btn btn-info col-12">INFO</a>
                                 </div>
                             </div>
                         </div>
