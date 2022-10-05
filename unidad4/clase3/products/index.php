@@ -13,7 +13,9 @@
 <html lang="en">
 <head>
     <?php include "../layouts/head.template.php" ;?>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+
 <body>
 
     <?php include "../layouts/nav.template.php" ;?>
@@ -33,7 +35,7 @@
                                 <span>Productos</span>
                             </div>
                             <div class="col">
-                                <button  data-bs-toggle="modal" data-bs-target="#createproduct"   class="btn btn-info float-end">
+                                <button onclick="addProduct()" data-bs-toggle="modal" data-bs-target="#createproduct"   class="btn btn-info float-end">
                                     añadir producto
                                 </button>
                             </div>
@@ -61,7 +63,7 @@
                                     </p>
                                     <p class="card-text"> <?php echo $arayP->description ?> </p>
                                     <div class="row">
-                                        <a  data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
+                                        <a  onclick="editProduct(this)" data-producduct='<?php  json_encode($product); ?>' data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
                                         <a href="" onclick="remove(this)"  class="btn btn-danger col-6">Eliminar</a>
                                     </div>
                                     <a href="detalles.php?slug=<?php echo $arayP->slug ?>"  class="btn btn-info col-12">INFO</a>
@@ -93,23 +95,23 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">name</span> 
-                    <input type="text" name="name" class="form-control" placeholder="name" aria-label="name" aria-describedby="basic-addon1"> 
+                    <input type="text" id="name" name="name" class="form-control" placeholder="name" aria-label="name" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">slug</span> 
-                    <input type="text" name="slug" class="form-control" placeholder="slug" aria-label="slug" aria-describedby="basic-addon1"> 
+                    <input type="text" id="slug" name="slug" class="form-control" placeholder="slug" aria-label="slug" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">description</span> 
-                    <input type="text" name="description" class="form-control" placeholder="description" aria-label="description" aria-describedby="basic-addon1"> 
+                    <input type="text" id="description" name="description" class="form-control" placeholder="description" aria-label="description" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">features</span>    
-                    <input type="text" name="features" class="form-control" placeholder="features" aria-label="features" aria-describedby="basic-addon1"> 
+                    <input type="text" id="features" name="features" class="form-control" placeholder="features" aria-label="features" aria-describedby="basic-addon1"> 
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">brand_id</span>
-                    <select name="brand_id" class="form-select" placeholder=" " id="">
+                    <select name="brand_id" id="brand_id" class="form-select" placeholder=" " id="">
                             <?php foreach($brand as $arrayBrand){ ?>
                                 <option value="<?php echo $arrayBrand ->id ?>"> <?php echo $arrayBrand->name ?> </option>
                             <?php }?>
@@ -121,7 +123,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" name="action" value="create">
+                <input id="inputOculto" type="hidden" name="action" value="create">
+                <input type="hidden" name="id" id="id">
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>            
         </form>
@@ -149,6 +152,21 @@
             });  
         }
         
+        function addProduct() {
+            document.getElementbyId("inputOculto").value = 'create';
+        }
+        function editProduct(target) {
+            document.getElementbyId("inputOculto").value = 'update';
+
+            let product = JSon.parse(target.getAttribute('data-product'))
+            document.getElementbyId("name").value = product.name;
+            document.getElementbyId("slug").value = product.slug;
+            document.getElementbyId("description").value = product.description;
+            document.getElementbyId("features").value = product.features;
+            document.getElementbyId("brand_id").value = product.brand_id;
+            document.getElementbyId("id").value = product.id;
+
+        }
     </script>
     <?php include "../layouts/scripts.template.php" ;?>
 
