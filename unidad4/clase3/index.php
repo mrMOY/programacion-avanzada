@@ -15,7 +15,7 @@
         <div class="contaner" >
                 <div id="app" class="vh-100 d-flex justify-content-center align-items-center">
                     <div class="col-md-4 p-5 shadow-sm border rounded-3">
-                        <form action="auth"  method="post">
+                        <form action="<?= BASE_PATH ?>auth"   method="post">
                             <fieldset>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img src="https://ifera.org/wp-content/uploads/2020/06/icon-green-login-1000-px.png" class="rounded w-50 p-3  " alt="..."> 
