@@ -1,16 +1,21 @@
 <?php 
-
+    include_once "config.php";
+  
     if (isset($_POST['action'])) {
-        switch ($_POST['action']) {
-            case 'access':
-                    $authController = new AuthController();
-
-                    $email = strip_tags($_POST['email']);
-                    $password = strip_tags($_POST['password']);
-                    $authController->login($email,$password);
-                break;
-            
+        if (isset($_POST['global_token']) && 
+        $_POST['global_token'] == $_SESSION['global_token']) {
+            switch ($_POST['action']) {
+                case 'access':
+                        $authController = new AuthController();
+    
+                        $email = strip_tags($_POST['email']);
+                        $password = strip_tags($_POST['password']);
+                        $authController->login($email,$password);
+                    break;
+                
+            }        
         }
+
     }
     class AuthController{
         public function login($email,$password)
@@ -33,7 +38,7 @@
             curl_close($curl);
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
-                session_start();
+                
                 $_SESSION['id']= $response->data->id;
                 $_SESSION['name']= $response->data->name;
                 $_SESSION['lastname'] = $response->data->lastname;

@@ -1,3 +1,6 @@
+<?php 
+    include_once "app/config.php";
+?>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -26,6 +29,7 @@
                                 </div>
                                 <div class="d-grid">
                                     <input type="hidden" name="action" value="access">
+                                    <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
                                     <button type="submit" name=""  class="btn btn-primary">Acceder</button>
                                 </div>
                             </fieldset>
