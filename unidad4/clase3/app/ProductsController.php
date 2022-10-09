@@ -1,41 +1,44 @@
 <?php 
     include_once "config.php";
     if (isset($_POST['action'])) {
-        switch ($_POST['action']) {
-            case 'create':
+        if (isset($_POST['global_token']) && 
+        $_POST['global_token'] == $_SESSION['global_token']) {
+            switch ($_POST['action']) {
+                case 'create':
+                        $name = strip_tags($_POST['name']);
+                        $slug = strip_tags($_POST['slug']);
+                        $description = strip_tags($_POST['description']);
+                        $features = strip_tags($_POST['features']);
+                        $brand_id = strip_tags($_POST['brand_id']);
+
+                        $cover = $_FILES['cover']['tmp_name'];
+
+                        $productsController = new ProductsController;
+                        $productsController -> createProduct($name,$slug, $description, $features, $brand_id, $cover);
+                    
+                    break;
+                case 'update':
                     $name = strip_tags($_POST['name']);
                     $slug = strip_tags($_POST['slug']);
                     $description = strip_tags($_POST['description']);
                     $features = strip_tags($_POST['features']);
                     $brand_id = strip_tags($_POST['brand_id']);
-
-                    $cover = $_FILES['cover']['tmp_name'];
-
-                    $productsController = new ProductsController;
-                    $productsController -> createProduct($name,$slug, $description, $features, $brand_id, $cover);
-                
-                break;
-            case 'update':
-                $name = strip_tags($_POST['name']);
-                $slug = strip_tags($_POST['slug']);
-                $description = strip_tags($_POST['description']);
-                $features = strip_tags($_POST['features']);
-                $brand_id = strip_tags($_POST['brand_id']);
-                $id = strip_tags($_POST['id']);
-
-                $productsController = new ProductsController;
-                $productsController -> editProduct($name,$slug, $description, $features, $brand_id, $id);
-                
-
-                break;
-
-            case 'delete':
-                    $id = $_POST['id'];
+                    $id = strip_tags($_POST['id']);
 
                     $productsController = new ProductsController;
-                    $productsController -> deleteProduct($id);
-                break ;
-            
+                    $productsController -> editProduct($name,$slug, $description, $features, $brand_id, $id);
+                    
+
+                    break;
+
+                case 'delete':
+                        $id = $_POST['id'];
+
+                        $productsController = new ProductsController;
+                        $productsController -> deleteProduct($id);
+                    break ;
+                
+            }
         }
     }
     
@@ -121,14 +124,15 @@
                   'Content-Type: application/x-www-form-urlencoded'
                 ),
               ));
-            $response = curl_exec($curl);
-
-            curl_close($curl);
+              $response = curl_exec($curl);
+              curl_close($curl);
+            //   echo $response;
+              $response = json_decode($response);
             if(isset($response->code) && $response->code > 0){
-                header("Location:../products/?success=true");
+                header("Location:../products/?edit=true");
             }
             else{
-                header("Location:../products/?error=true");
+                header("Location:../products/?rdit=false");
             }       
         }
 
@@ -223,10 +227,10 @@
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
                 
-                header("Location:../products?succes=true");
+                header("Location:../products?create=true");
 
             }else {
-                header("Location:../products?succes=true") ;          
+                header("Location:../products?csreate=false") ;          
             }        
         }
     }

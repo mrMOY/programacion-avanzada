@@ -5,6 +5,8 @@
     }
 
     if (!defined('BASE_PATH')) {
-        define('BASE_PATH','http://localhost/Progra-av/programacion-avanzada/unidad4/clase3/');
+        define('BASE_PATH','http://localhost/GIT/programacion-avanzada/unidad4/clase3/');
+        // define('BASE_PATH','http://localhost/Progra-av/programacion-avanzada/unidad4/clase3/');
+
     }
 ?>

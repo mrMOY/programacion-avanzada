@@ -64,7 +64,7 @@
                                     <div class="row">
                                         <a  onclick ="editProduct(this)" data-product='<?php echo json_encode($arayP); ?>' data-bs-toggle="modal" data-bs-target="#createproduct"  class="btn btn-warning col-6">Editar</a>
                                         
-                                        <a  onclick="remove(<?php echo $arayP->id ?>)"  class="btn btn-danger col-6">Eliminar</a>
+                                        <a  onclick="remove(<?php echo $arayP->id ?>)"  class="btn btn-danger col-6" >Eliminar</a>
                                     </div>
                                     <a href="detalles.php?slug=<?php echo $arayP->slug ?>"  class="btn btn-info col-12">INFO</a>
                                 </div>
@@ -125,6 +125,7 @@
             <div class="modal-footer">
                 <input type="hidden" name="id" id="id">
                 <input type="hidden" id="inputOculto"  name="action">
+                <input type="hidden" name="global_token" value="<?= $_SESSION['global_token'] ?>">
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>            
         </form>
@@ -149,10 +150,12 @@
                 var bodyFormData = new FormData();
                 bodyFormData.append('id', id);
                 bodyFormData.append('action', 'delete');
+                bodyFormData.append('global_token', '<?= $_SESSION['global_token'] ?>');
                 console.log(id);
                 axios.post('../app/ProductsController.php',bodyFormData)
                 .then(function (response){
                             console.log('hola');
+                            
                         })
                         .catch(function (error){
                             console.log('error');
