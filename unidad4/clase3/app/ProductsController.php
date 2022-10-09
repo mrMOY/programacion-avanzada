@@ -67,9 +67,12 @@
             curl_close($curl);
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
-                header("Location:../productos?delete=true");
+                // header("Location:../productos?delete=true");
+                header("Location:".BASE_PATH."products/?detele=true");
+
             }else{
-                header("Location:../productos?delete=false");
+                // header("Location:../productos?delete=false");
+                header("Location:".BASE_PATH."products/?delete=true");
             }
         }
 
@@ -118,7 +121,7 @@
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'PUT',
-                CURLOPT_POSTFIELDS => 'name=' . $name. '&slug=' . $slug. '&description=' . $description.'&features=' . $features.'&brand_id=' . $brand.'&id=' . $id,
+                CURLOPT_POSTFIELDS => 'name=' . $name. '&slug=' . $slug. '&description=' . $description.'&features=' . $features.'&brand_id=' . $brand_id.'&id=' . $id,
                 CURLOPT_HTTPHEADER => array(
                   'Authorization: Bearer ' . $_SESSION['token'],
                   'Content-Type: application/x-www-form-urlencoded'
@@ -129,10 +132,13 @@
             //   echo $response;
               $response = json_decode($response);
             if(isset($response->code) && $response->code > 0){
-                header("Location:../products/?edit=true");
+                // header("Location:../products/?edit=true");
+                header("Location:".BASE_PATH."products/?edit=true");
+                
             }
             else{
-                header("Location:../products/?rdit=false");
+                // header("Location:../products/?rdit=false");
+                header("Location:".BASE_PATH."products/?edit=false");
             }       
         }
 
@@ -227,10 +233,13 @@
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
                 
-                header("Location:../products?create=true");
+                // header("Location:../products?create=true");
+                header("Location:".BASE_PATH."products/?create=true");
 
             }else {
-                header("Location:../products?csreate=false") ;          
+                // header("Location:../products?csreate=false") ;     
+                header("Location:".BASE_PATH."products/?create=false");
+     
             }        
         }
     }

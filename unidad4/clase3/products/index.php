@@ -86,11 +86,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Añadir Producto</h5>
+            <h5 class="modal-title" >Añadir Producto</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form action="index.php" method="post" enctype="multipart/form-data">
+        <form action="<?= BASE_PATH ?>productos" method="post" enctype="multipart/form-data">
             
             <div class="modal-body">
                 <div class="input-group mb-3">
@@ -152,7 +152,7 @@
                 bodyFormData.append('action', 'delete');
                 bodyFormData.append('global_token', '<?= $_SESSION['global_token'] ?>');
                 console.log(id);
-                axios.post('../app/ProductsController.php',bodyFormData)
+                axios.post('<?= BASE_PATH ?>productos',bodyFormData);
                 .then(function (response){
                             console.log('hola');
                             
@@ -171,7 +171,6 @@
 
         function addProduct() {
             document.getElementById('inputOculto').value = 'create';
-
             document.getElementById('name').value = "";
             document.getElementById('slug').value = "";
             document.getElementById('description').value = "";
@@ -179,7 +178,7 @@
             document.getElementById('brand_id').value = 1;
         }
 
-        function editProduct(target) {
+        function editProduct(target) { 
             document.getElementById('inputOculto').value = 'update';
 
             let product = JSON.parse(target.getAttribute('data-product'));
