@@ -66,7 +66,8 @@
                                         
                                         <a  onclick="remove(<?php echo $arayP->id ?>)"  class="btn btn-danger col-6" >Eliminar</a>
                                     </div>
-                                    <a href="detalles.php?slug=<?php echo $arayP->slug ?>"  class="btn btn-info col-12">INFO</a>
+                                    <a  href="<?= BASE_PATH."prod/". $arayP->slug?>"  class="btn btn-info col-12">INFO</a>
+
                                 </div>
                             </div>
                         </div>
@@ -152,7 +153,7 @@
                 bodyFormData.append('action', 'delete');
                 bodyFormData.append('global_token', '<?= $_SESSION['global_token'] ?>');
                 console.log(id);
-                axios.post('<?= BASE_PATH ?>productos',bodyFormData);
+                axios.post('<?= BASE_PATH ?>productos',bodyFormData)
                 .then(function (response){
                             console.log('hola');
                             
