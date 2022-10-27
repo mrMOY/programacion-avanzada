@@ -49,7 +49,7 @@ Route::get('users/{id}', [UserController::class,'show']);
 
 Route::post('users/', [UserController::class,'store']);
 
-Route::get('client', [ClientController::class,'index']);
+Route::get('clients', [ClientController::class,'index']);
 
 Route::get('clients/{id}', [ClientController::class,'show']);
 

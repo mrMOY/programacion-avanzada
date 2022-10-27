@@ -14,7 +14,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-       return Reservation::all();
+        return Reservation::with('client')->get();
     }
 
     /**
@@ -44,9 +44,9 @@ class ReservationController extends Controller
      * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show($reservation)
+    public function show($id)
     {
-        return Reservation::find($reservation);
+        return Reservation::with('client')->find($id);
     }
 
     /**
