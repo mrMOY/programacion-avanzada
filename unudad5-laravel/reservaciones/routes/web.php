@@ -21,9 +21,9 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', function(){
+    return view('auth.login');
+})->name('login');
 
 Route::get('/hola', function () {
     echo "hola";
@@ -49,6 +49,9 @@ Route::get('users/{id}', [UserController::class,'show']);
 
 Route::post('users/', [UserController::class,'store']);
 
+Route::get('/prueba', function () {
+    return "hola";
+})->middleware('auth');
 
 
 Route::get('clients', [ClientController::class,'index']);
@@ -62,8 +65,6 @@ Route::post('clients', [ClientController::class,'store']);
 Route::get('clients/edit/{id}', [ClientController::class,'edit']);
 
 Route::put('clients', [ClientController::class,'update']);
-
-
 
 
 Route::get('reservation', [ReservationController::class,'index']);
